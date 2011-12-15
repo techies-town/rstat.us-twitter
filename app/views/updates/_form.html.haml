@@ -1,0 +1,16 @@
+= form_for Update.new, :html => {:name => "update_form", :id => "update-form", :class => "update-form"} do |f|
+  %h4 What's Going On?
+  #update-content
+    %textarea#update-textarea{:name => "text"}=@update_text
+  #update-info
+    - if current_user.twitter?
+      #repost-services
+        .info Post to:
+        .input-checkbox
+          %input{:type => "checkbox", :name => "tweet", :id => "tweet", :checked => "checked", :value => "1"}
+          %label{:for => "tweet"} Twitter
+
+    %input#update-referral{:type => 'hidden', :name => 'referral_id', :value => @update_id}
+    %input#update-button.button{:type => "submit", :value => "Share"}
+    #update-count{:title => 'Characters remaining'}
+

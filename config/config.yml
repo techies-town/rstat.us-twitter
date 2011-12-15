@@ -1,0 +1,23 @@
+# encoding: utf-8
+development:
+  # Twitter API stuff (these fake keys work)
+  CONSUMER_KEY: asdf
+  CONSUMER_SECRET: asdf
+
+  #set this to the URL of a status blog or the like.
+  #if empty, the Blog footer link won't show.
+  BLOG_URL:
+
+  # See https://github.com/benprew/pony for via_options.
+  PONY_VIA_OPTIONS:
+    address: smtp.yourserver.com
+    port: 25
+    user_name: user
+    password: password
+    authentication: :plain
+    domain: localhost.localdomain
+
+test:
+  CONSUMER_KEY: asdf
+  CONSUMER_SECRET: asdf
+  BLOG_URL:

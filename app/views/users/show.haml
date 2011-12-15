@@ -1,0 +1,59 @@
+- @profile_sidebar = false
+- title "@#{@author.username}'s Profile"
+
+- content_for :sidebar do
+  - if @author.user == current_user
+    = render :partial => "shared/sidebar/gravatar"
+
+- content_for :top do
+  #profile.vcard
+
+    %h3.fn= @author.display_name
+    .nickname  @#{@author.username}
+
+    .follow-wrap
+      - unless current_user and @author.user == current_user
+        #follow
+          - if current_user and current_user.following_author? @author
+            .negative
+              = form_tag "/subscriptions/#{@author.feed.id}" do
+                %input{:type => "hidden", :name => "_method", :value => "delete"}
+                  %input.button.unfollow{:type => "submit", :value => "Unfollow", :id => "unfollow-#{@author.feed.id}"}
+          - elsif current_user
+            = form_tag "/subscriptions" do
+              %input{:type => "hidden", :name => "subscribe_to", :value => @author.feed.id}
+                %input.button.follow{:type => "submit", :value => "Follow", :id => "follow-#{@author.feed.id}"}
+
+      - if @author.user == current_user
+        .edit
+          %a{:href => edit_user_path(@author.username)} Edit
+
+    - unless @author.website.blank? or @author.bio.blank?
+      .info
+        - unless @author.website.blank?
+          .website
+            - web_url = ""
+            - if @author.website[0,7] == "http://" or @author.website[0,8] == "https://"
+              - web_url = @author.website
+            - else
+              - web_url = "http://#{@author.website}"
+            %a.url{:rel => "me", :href => web_url}
+              = web_url
+
+        %p.note= @author.bio
+
+    %ul.stats
+      %li.update-count
+        .icon
+        %a{ :href => "#profile_updates"}= @author.feed.updates.count
+        Updates
+      %li.following-count
+        .icon
+        %a{ :href => "/users/#{@author.username}/following"}= @author.user.following.length
+        Following
+      %li.follower-count
+        .icon
+        %a{ :href => "/users/#{@author.username}/followers"}= @author.user.followers.length
+        Followers
+
+= render :partial => "updates/list", :locals => {:updates => @updates, :id => "profile_updates", :no_highlight => true}

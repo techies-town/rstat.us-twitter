@@ -1,0 +1,148 @@
+@import "lib/base.css.scss";
+
+body {
+  background: $background_color;
+  color: $text_color;
+  min-width: 840px;
+}
+
+#header, #page, #footer {
+  @include container();
+}
+
+.menu {
+  @include clearfix;
+
+  li {
+    float: left;
+    list-style-type: none;
+    padding: 0 0.5em;
+  }
+}
+
+/* *******************************/
+/* Header */
+/* *******************************/
+#header-wrap {
+  color: white;
+  background: $header_color;
+  margin-bottom: 1.5em;
+  @include clearfix;
+
+  #header {
+    @include clearfix;
+    #logo {
+      float: left;
+      padding: 1em $gutter_width/2;
+      h1 {
+        @include image-replaced("<%= asset_path 'embed/logo-sm.png' %>", 96px, 33px);
+        margin: 0;
+      }
+    }
+    .menu {
+      margin-top: 1.75em;
+      float: left;
+    }
+
+    #profile_menu {
+      float: right;
+
+      a {
+        color: $de_emph_text_color;
+      }
+    }
+  }
+}
+
+/* *******************************/
+/* Flashes */
+/* *******************************/
+#error {
+  padding: 0 1em 1em;
+  color: red;
+
+  ul {
+    padding-left: 2em;
+  }
+}
+
+/* *******************************/
+/* Main Content */
+/* *******************************/
+#content-wrap {
+  @include column(14);
+  @include rounded(4px);
+  background: $content_background;
+  padding-top: $gutter_width/2;
+}
+
+h2.title {
+  padding: 0 $gutter_width;
+}
+
+#top {
+  margin: 0 $gutter_width/2;
+}
+#content {
+  @include content-block;
+  margin-top: 0;
+  .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ddd;
+    opacity: 0.5;
+  }
+
+  .pagination {
+    @include clearfix;
+    margin: 0;
+
+    .button {
+      margin: 0;
+      margin-top: 1em;
+    }
+
+    #next_button {
+      float: right;
+      margin-right: 0.5em;
+    }
+    #prev_button {
+      float: left;
+      margin-left: 0.5em;
+    }
+  }
+}
+
+/* *******************************/
+/* Sidebar */
+/* *******************************/
+#sidebar {
+  @include column(6);
+  @include last;
+
+  .block {
+    margin-left: 1em;
+    padding-top: 1em;
+    border-bottom: 1px solid #ccc;
+
+  }
+}
+
+/* *******************************/
+/* Footer */
+/* *******************************/
+#footer {
+  #footer-wrap {
+    padding: $gutter_width $gutter_width/2;
+    @include clearfix;
+  }
+  #footer-logo {
+    float: left;
+    padding-right: 1em;
+    border-right: 1px solid #ccc;
+    margin-right: 0.5em;
+  }
+}

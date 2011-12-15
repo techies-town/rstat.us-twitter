@@ -1,0 +1,35 @@
+- content_for :title do
+  Log In or Sign up
+
+- content_for :top do
+  = render :partial => "users/errors", :locals => {:user => @user}
+
+#login-forms
+
+  %h4
+    One form, that's all.
+  %p
+    Put in a username and password, and we'll take care of the rest.
+
+  = form_tag "/sessions", :html => {:id => "login"} do
+    .form-section
+      = render :partial => "shared/field", :locals => {:attr => :username, :params => params}
+      = render :partial => "shared/field", :locals => {:attr => :password, :params => params, :as => :password}
+
+    .form-submit
+      %input.button{:type => "submit", :value => "Log in"}
+      %a.forgot-password{:href => "/forgot_password"} Forgot Password
+
+- content_for :bottom do
+  #login-services.bottom-block
+    %h4 Use Your Existing Facebook or Twitter Account
+    .login-service
+      %p Sign in with:
+    .twitter.login-service
+      %a.button{:href=>'/auth/twitter'}
+        %span.icon.twitter
+        Twitter
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function(){$("#username").focus()});

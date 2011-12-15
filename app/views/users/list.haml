@@ -1,0 +1,12 @@
+- title(title)
+- content_for :title do
+  = title
+
+- if @authors.empty?
+  %h3 No one yet!
+  Well, that's kind of boring.  Why not check out the links on the left to browse users or search rstat.us updates?
+
+- else
+  = render :partial => "users/list", :locals => {:authors => @authors}
+
+= render "shared/pagination"
