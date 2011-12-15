@@ -62,5 +62,13 @@ gem 'therubyracer'
 then again use bundle install   ====> ("Never Use bundle update")
 
 
+Then Write on terminal
+$ rackup
+
+then your application started at post 9292
+so you just check => http://localhost:9292
+
+or if you are using rails s
+then it will be default port http://localhost:3000 
 
 
