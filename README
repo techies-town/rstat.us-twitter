@@ -1,0 +1,66 @@
+here we integrate some modification in controller and model so that any user twitter a word 
+using $ (ex-$IBM) it will be display as a link 
+if it is storeed in model name company
+
+Here is the steps to integrate this application
+
+1=> Requirment
+      => You Should have mongodb version 2.0.1
+      => You Should have ruby-1.9.2-p180   => patch is very importent so use ruby version exectly same
+      => You Should have rails version 3.1.0
+
+
+
+its good if you are using RVM
+
+You Just follow these steps on terminal
+
+$ rvm install 1.9.2-p180
+$ rvm use 1.9.2-p180
+$ rvm gemset create rails3.1.0
+$ rvm gemset use rails3.1.0
+$ gem install rails -v=3.1.0 --no-ri --no-rdoc
+
+now come to /rstat.us-twitter directory
+like this example=>  cd /var/www/rails_apps/rstat.us-twitter$ 
+here you use your path
+
+make sure about mongodb it is working properly for this you write on the terminal
+
+$ mongo
+it will responce like this
+
+MongoDB shell version: 2.0.1
+connecting to: test
+> 
+now just quit from here your mongodb working properly
+for exiting use ctrl+c OR write quit on terminal
+
+
+$ bundle install
+if it gives some error related to rack version 1.3.5  like "You alreay install rack version 1.3.5 and you are requested to 1.3.2"
+ Don't Worry 
+just uninstall rake gem like this
+
+$ gem unisnatall rack version 1.3.5
+it will show you three options 
+
+1> 1.3.1
+2> 1.3.2  
+3>1.3.5
+
+$ 3
+
+and remove this gem
+and then again use bundel install
+
+if gives some other error just add these gems in your gemfile
+
+gem 'execjs'
+gem 'therubyracer'
+
+then again use bundle install   ====> ("Never Use bundle update")
+
+
+
+
